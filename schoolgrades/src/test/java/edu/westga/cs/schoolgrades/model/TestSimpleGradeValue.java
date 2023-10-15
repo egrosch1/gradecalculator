@@ -12,4 +12,11 @@ public class TestSimpleGradeValue {
 		simpleGrade.setValue(80);
 		assertEquals(simpleGrade.getValue(), 80);
 	}
+	
+	public void TestSimpleGradeGetValueIfChanged() {
+		SimpleGrade simpleGrade = new SimpleGrade();
+		simpleGrade.setValue(80);
+		simpleGrade.setValue(90);
+		assertEquals(simpleGrade.getValue(), 90);
+	}
 }
