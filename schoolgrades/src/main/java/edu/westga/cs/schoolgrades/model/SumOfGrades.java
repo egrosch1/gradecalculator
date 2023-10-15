@@ -11,9 +11,11 @@ public class SumOfGrades extends CompositeGrade{
 	@Override
 	public double getCalculatedGrade() {
 		double sum = 0;
-		for (Grade currentGrade : grades)
+		for (Grade currentGrade : getGrades()) {
+			sum += currentGrade.getValue();
+		}
 			
-		return 0;
+		return sum;
 	}
 
 	
