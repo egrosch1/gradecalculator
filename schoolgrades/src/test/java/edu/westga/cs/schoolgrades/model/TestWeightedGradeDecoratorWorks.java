@@ -1,9 +1,6 @@
 package edu.westga.cs.schoolgrades.model;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import edu.westga.cs.schoolgrades.model.Grade;
-import edu.westga.cs.schoolgrades.model.SimpleGrade;
-import edu.westga.cs.schoolgrades.model.WeightedGradeDecorator;
 
 /**
  * 
