@@ -3,7 +3,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
- * 
+ * TestWeightedGradeDecoratorWorks for the purpose of Testing that the weighted grade decorator works as expected
+ * @author Emily Estrada
+ * @version October 2023
  */
 public class TestWeightedGradeDecoratorWorks {
 

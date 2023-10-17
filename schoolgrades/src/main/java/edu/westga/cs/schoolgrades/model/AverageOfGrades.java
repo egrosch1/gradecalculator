@@ -1,10 +1,11 @@
-
 package edu.westga.cs.schoolgrades.model;
 
 /**
- * 
+ * AverageOfGrades Class which extends the CompositeGrade abstract class for the purpose of getting the average of a list of grades
+ * @author Emily Estrada
+ * @version October 2023
  */
-public class AverageOfGrades extends CompositeGrade{
+public class AverageOfGrades extends CompositeGrade {
 
 	public AverageOfGrades() {
 		super();
@@ -17,7 +18,7 @@ public class AverageOfGrades extends CompositeGrade{
 	@Override
 	public double getCalculatedGrade() {
 		if (getGrades().isEmpty()) {
-			return 0.0; // Return 0 if there are no grades to calculate the average
+			return 0.0; 
 		}
 
 		double sum = 0;
@@ -25,6 +26,6 @@ public class AverageOfGrades extends CompositeGrade{
 			sum += grade.getValue();
 		}
 
-		return sum / getGrades().size(); // Calculate the average
+		return sum / getGrades().size();
 	}
 }

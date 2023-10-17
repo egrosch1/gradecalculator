@@ -12,12 +12,12 @@ public class TestAverageOfGrades {
 
     @Before
     public void setUp() {
-        averageGrades = new AverageOfGrades();
+        this.averageGrades = new AverageOfGrades();
     }
 
     @Test
     public void testEmptyGradesList() {
-        assertEquals(0.0, averageGrades.getCalculatedGrade(), 0.001);
+        assertEquals(0.0, this.averageGrades.getCalculatedGrade(), 0.001);
     }
 
     @Test
@@ -28,8 +28,8 @@ public class TestAverageOfGrades {
                 return 90.0;
             }
         };
-        averageGrades.addGrade(grade);
-        assertEquals(90.0, averageGrades.getCalculatedGrade(), 0.001);
+        this.averageGrades.addGrade(grade);
+        assertEquals(90.0, this.averageGrades.getCalculatedGrade(), 0.001);
     }
 
     @Test
@@ -55,9 +55,9 @@ public class TestAverageOfGrades {
         });
 
         for (Grade grade : grades) {
-            averageGrades.addGrade(grade);
+            this.averageGrades.addGrade(grade);
         }
         
-        assertEquals(86.67, averageGrades.getCalculatedGrade(), 0.01);
+        assertEquals(86.67, this.averageGrades.getCalculatedGrade(), 0.01);
     }
 }

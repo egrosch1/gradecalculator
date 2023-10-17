@@ -1,6 +1,6 @@
 package edu.westga.cs.schoolgrades.model;
 
-public class SimpleGrade implements Grade{
+public class SimpleGrade implements Grade {
 
 	private double value;
 
@@ -9,7 +9,7 @@ public class SimpleGrade implements Grade{
 	 * @return the value
 	 */
 	public double getValue() {
-		return value;
+		return this.value;
 	}
 
 	/**

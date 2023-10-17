@@ -4,11 +4,12 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
-import edu.westga.cs.schoolgrades.model.AverageOfGrades;
-import edu.westga.cs.schoolgrades.model.Grade;
-import edu.westga.cs.schoolgrades.model.SimpleGrade;
-import edu.westga.cs.schoolgrades.model.SumOfGrades;
 
+/**
+ * Test the CompositeGrade information using SumOfGrades and SimpleGrades
+ * @author Emily Estrada
+ * @version October 2023
+ */
 public class TestCompositeGrade {
 
     @Test

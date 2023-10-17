@@ -1,13 +1,12 @@
-/**
- * 
- */
 package edu.westga.cs.schoolgrades.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * Abstract Class CompositeGrade for the purpose of getting a list of grades and implementing a strategy
+ * @author Emily Estrada
+ * @version October 2023
  */
 public abstract class CompositeGrade implements Grade, CalculationStrategy {
 	
@@ -17,7 +16,7 @@ public abstract class CompositeGrade implements Grade, CalculationStrategy {
 	 * @return the grades
 	 */
 	protected List<Grade> getGrades() {
-		return grades;
+		return this.grades;
 	}
 
 	private double value;
@@ -31,6 +30,6 @@ public abstract class CompositeGrade implements Grade, CalculationStrategy {
 	 * @return the value
 	 */
 	public double getValue() {
-		return value;
+		return this.value;
 	}
 }
