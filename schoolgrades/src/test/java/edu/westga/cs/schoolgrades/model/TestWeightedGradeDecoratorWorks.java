@@ -19,6 +19,16 @@ public class TestWeightedGradeDecoratorWorks {
 	}
 
 	@Test
+	public void testSetWeightAndGetDecoratedValue() {
+		SimpleGrade simpleGrade = new SimpleGrade();
+		simpleGrade.setValue(80);
+		WeightedGradeDecorator weightedGrade = new WeightedGradeDecorator(simpleGrade, 0.25);
+		assertEquals(20.0, weightedGrade.getValue(), 0.001);
+		weightedGrade.setWeight(0.75);
+		assertEquals(60.0, weightedGrade.getValue(), 0.001); 
+	}
+
+	@Test
 	public void testDecorateSimpleGradeWith25PercentWeight() {
 		SimpleGrade simpleGrade = new SimpleGrade();
 		simpleGrade.setValue(80); 

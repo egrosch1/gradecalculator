@@ -9,18 +9,20 @@ import java.util.List;
  */
 public class SumOfGrades extends CompositeGrade {
 
-	private List<Grade> grades;
-
 	public SumOfGrades(List<Grade> grades) {
-		this.grades = grades;
+		super();
+		for (Grade grade : grades) {
+			this.addGrade(grade);
+		}
 	}
 
 	@Override
 	public double getCalculatedGrade() {
 		double sum = 0;
-		for (Grade currentGrade : this.grades) {
+		for (Grade currentGrade : this.getGrades()) {
 			sum += currentGrade.getValue();
 		}
 		return sum;
 	}
 }
+
