@@ -8,10 +8,49 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
 
-<VBox spacing="10" xmlns="http://javafx.com/javafx/20.0.1"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="edu.westga.cs.schoolgrades.controller.GradeController">
+<VBox xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="edu.westga.cs.schoolgrades.controller.GradeController"
+      alignment="CENTER" spacing="10">
 
-	
+    <Label text="Data" />
+
+    <HBox spacing="10">
+        <!-- Quiz Section -->
+        <VBox spacing="10">
+            <Label text="Quiz" />
+            <ListView fx:id="quizInput" />
+            <Label text="Quiz Subtotal" />
+            <TextField fx:id="quizSubtotalField" editable="false" />
+            <VBox fx:id="quizResultBox" />
+        </VBox>
+
+        <!-- Homeworks Section -->
+        <VBox spacing="10">
+            <Label text="Homeworks" />
+            <ListView fx:id="homeworkInput" />
+            <Label text="Homework Subtotal" />
+            <TextField fx:id="homeworkSubtotalField" editable="false" />
+            <VBox fx:id="homeworkResultBox" />
+        </VBox>
+
+        <!-- Exams Section -->
+        <VBox spacing="10">
+            <Label text="Exams" />
+            <ListView fx:id="examInput" />
+            <Label text="Exam Subtotal" />
+            <TextField fx:id="examSubtotalField" editable="false" />
+            <VBox fx:id="examResultBox" />
+        </VBox>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Final Grade: " />
+        <TextField fx:id="finalGradeField" editable="false" />
+        <Button text="Recalculate" onAction="#recalculateButtonAction" />
+    </HBox>
+
 </VBox>
+
+
