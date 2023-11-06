@@ -15,12 +15,12 @@ public class SimpleGrade implements Grade {
 	 * @param value the assigned numerical grade. Must be >= 0
 	 */
 	public SimpleGrade(double value) {
-		setValue(value);
+		this.setValue(value);
 	}
 	
 	@Override
 	public double getValue() {
-		return value;
+		return this.value;
 	}
 	
 	/**

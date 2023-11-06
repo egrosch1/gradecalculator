@@ -1,7 +1,8 @@
 package edu.westga.cs.schoolgrades.model;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
 public class TestSimpleGradeConstructor {
@@ -10,7 +11,7 @@ public class TestSimpleGradeConstructor {
 
 	@Test
 	public void shouldNotAllowNegativeGrades() {
-		assertThrows(IllegalArgumentException.class, () ->{ 
+		assertThrows(IllegalArgumentException.class, () -> { 
 			new SimpleGrade(-1);
 		});
 	}

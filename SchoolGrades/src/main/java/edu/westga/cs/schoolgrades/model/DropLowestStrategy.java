@@ -40,11 +40,11 @@ public class DropLowestStrategy implements GradeCalculationStrategy {
 		}
 		
 		if (grades.size() < 2) {
-			return childStrategy.calculate(grades);
+			return this.childStrategy.calculate(grades);
 		}
 		
-		List<Grade> withLowestRemoved = dropLowestFrom(grades);
-		return childStrategy.calculate(withLowestRemoved);
+		List<Grade> withLowestRemoved = this.dropLowestFrom(grades);
+		return this.childStrategy.calculate(withLowestRemoved);
 	} 
 
 	private List<Grade> dropLowestFrom(List<Grade> grades) {

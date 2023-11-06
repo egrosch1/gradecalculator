@@ -1,6 +1,7 @@
 package edu.westga.cs.schoolgrades.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,25 +13,25 @@ public class TestWeightedGradeGetValue {
 	
 	@BeforeEach
 	public void setup() {
-		simpleGrade = new SimpleGrade(100);
+		this.simpleGrade = new SimpleGrade(100);
 	}
 	
 	@Test
 	public void shouldApplyZeroWeight() {
-		weightedGrade = new WeightedGrade(simpleGrade, 0);
-		assertEquals(0, weightedGrade.getValue(), DELTA);
+		this.weightedGrade = new WeightedGrade(this.simpleGrade, 0);
+		assertEquals(0, this.weightedGrade.getValue(), DELTA);
 	}
 	
 	@Test
 	public void shouldApplyWeightOfOne() {
-		weightedGrade = new WeightedGrade(simpleGrade, 1);
-		assertEquals(100, weightedGrade.getValue(), DELTA);
+		this.weightedGrade = new WeightedGrade(this.simpleGrade, 1);
+		assertEquals(100, this.weightedGrade.getValue(), DELTA);
 	}
 	
 	@Test
 	public void shouldApplyWeightBetweenZeroAndOne() {
-		weightedGrade = new WeightedGrade(simpleGrade, 0.5);
-		assertEquals(50, weightedGrade.getValue(), DELTA);
+		this.weightedGrade = new WeightedGrade(this.simpleGrade, 0.5);
+		assertEquals(50, this.weightedGrade.getValue(), DELTA);
 	}
 
 }

@@ -30,7 +30,7 @@ public class Main extends Application {
     }
 
     /**
-     * Start point for the appliction.
+     * Start point for the application.
      * 
      * @param args not used
      */

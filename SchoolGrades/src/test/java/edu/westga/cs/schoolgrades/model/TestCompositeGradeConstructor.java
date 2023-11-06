@@ -1,15 +1,15 @@
 package edu.westga.cs.schoolgrades.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 public class TestCompositeGradeConstructor {
-
-	
 	
 	@Test
 	public void shouldNotAllowNullStrategy() {
-		assertThrows(IllegalArgumentException.class, () ->{ 
+		assertThrows(IllegalArgumentException.class, () -> { 
 			new CompositeGrade(null);
 		});
 	}

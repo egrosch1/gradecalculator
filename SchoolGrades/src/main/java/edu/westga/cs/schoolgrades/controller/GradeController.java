@@ -8,7 +8,6 @@ import javafx.scene.control.TextInputDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.List;
 import java.util.Optional;
 
 import edu.westga.cs.schoolgrades.model.AverageOfGradesStrategy;
@@ -146,7 +145,7 @@ public class GradeController {
     @FXML
     private void recalculateButtonAction() {	
     	if (this.quizGrades.isEmpty() || this.homeworkGrades.isEmpty() || this.examGrades.isEmpty()) {
-            showErrorDialog("Error", "All grade categories must have grades entered.");
+            this.showErrorDialog("Error", "All grade categories must have grades entered.");
             return;
 
         }

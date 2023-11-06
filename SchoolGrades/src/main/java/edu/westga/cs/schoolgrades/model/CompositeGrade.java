@@ -22,7 +22,7 @@ public class CompositeGrade implements Grade {
 	 * @param strategy the strategy to use for grade calculation. Must not be null.
 	 */
 	public CompositeGrade(GradeCalculationStrategy strategy) {
-		setGradingStrategy(strategy);
+		this.setGradingStrategy(strategy);
 		this.childGrades = new ArrayList<Grade>();
 	}
 	
@@ -32,8 +32,8 @@ public class CompositeGrade implements Grade {
 	 * @param grade the grade to add. Must not be null and must not already exist in this CompositeGrade
 	 */
 	public void add(final Grade grade) {
-		validateGradeNotNull(grade);
-		childGrades.add(grade);
+		this.validateGradeNotNull(grade);
+		this.childGrades.add(grade);
 	}
 	
 	/**
@@ -42,17 +42,16 @@ public class CompositeGrade implements Grade {
 	 * @param index the index at which to add it
 	 */
 	public void add(final Grade grade, int index) {
-		validateGradeNotNull(grade);
-		childGrades.add(index, grade);
+		this.validateGradeNotNull(grade);
+		this.childGrades.add(index, grade);
 	}
 	
 	/**
 	 * Removes the {@link Grade}  at the given index.
-	 * @param grade the grade to remove
 	 * @param index the index at which to remove it
 	 */
 	public void removeAt(int index) {
-		childGrades.remove(index);
+		this.childGrades.remove(index);
 	}
 
 	private void validateGradeNotNull(final Grade grade) {
@@ -67,12 +66,12 @@ public class CompositeGrade implements Grade {
 	 * @return all contained grades
 	 */
 	public List<Grade> getGrades() {
-		return Collections.unmodifiableList(childGrades);
+		return Collections.unmodifiableList(this.childGrades);
 	}
 	
 	@Override
 	public double getValue() {
-		return strategy.calculate(childGrades);
+		return this.strategy.calculate(this.childGrades);
 	}
 
 	/**
