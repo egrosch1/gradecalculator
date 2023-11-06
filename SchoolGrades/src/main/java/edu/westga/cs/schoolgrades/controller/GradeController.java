@@ -1,6 +1,7 @@
 package edu.westga.cs.schoolgrades.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
@@ -143,7 +144,12 @@ public class GradeController {
     }
 
     @FXML
-    private void recalculateButtonAction() {
+    private void recalculateButtonAction() {	
+    	if (this.quizGrades.isEmpty() || this.homeworkGrades.isEmpty() || this.examGrades.isEmpty()) {
+            showErrorDialog("Error", "All grade categories must have grades entered.");
+            return;
+
+        }
         double quizSubtotal = Double.parseDouble(this.quizSubtotalField.getText());
         double homeworkSubtotal = Double.parseDouble(this.homeworkSubtotalField.getText());
         double examSubtotal = Double.parseDouble(this.examSubtotalField.getText());
@@ -152,5 +158,12 @@ public class GradeController {
         this.finalGradeField.setText(String.valueOf(finalGrade));
     }
 
+    private void showErrorDialog(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 }
