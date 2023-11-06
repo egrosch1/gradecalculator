@@ -16,10 +16,10 @@
     spacing="10">
 
     <MenuBar>
-        <Menu text="Data">
-            <MenuItem text="Add Quiz" onAction="#addQuizGrade" />
-            <MenuItem text="Add Homework" onAction="#addHomeworkGrade" />
-            <MenuItem text="Add Exam" onAction="#addExamGrade" />
+        <Menu text="_Data">
+            <MenuItem text="Add _Quiz" onAction="#addQuizGrade" />
+            <MenuItem text="Add _Homework" onAction="#addHomeworkGrade" />
+            <MenuItem text="Add _Exam" onAction="#addExamGrade" />
         </Menu>
     </MenuBar>
 
@@ -56,6 +56,6 @@
     <HBox spacing="10" alignment="CENTER">
         <Label text="Final Grade: " />
         <TextField fx:id="finalGradeField" editable="false" accessibleRole="TEXT_FIELD" />
-        <Button text="Recalculate" onAction="#recalculateButtonAction" accessibleRole="BUTTON" />
+        <Button text="_Recalculate" onAction="#recalculateButtonAction" accessibleRole="BUTTON" />
     </HBox>
 </VBox>
