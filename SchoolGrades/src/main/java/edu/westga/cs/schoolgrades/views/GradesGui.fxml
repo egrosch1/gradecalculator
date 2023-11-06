@@ -4,67 +4,58 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
 
+<VBox xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="edu.westga.cs.schoolgrades.controller.GradeController" alignment="CENTER"
+    spacing="10">
 
+    <MenuBar>
+        <Menu text="Data">
+            <MenuItem text="Add Quiz" onAction="#addQuizGrade" />
+            <MenuItem text="Add Homework" onAction="#addHomeworkGrade" />
+            <MenuItem text="Add Exam" onAction="#addExamGrade" />
+        </Menu>
+    </MenuBar>
 
+    <HBox spacing="10">
 
-<VBox xmlns="http://javafx.com/javafx/20"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="edu.westga.cs.schoolgrades.controller.GradeController"
-	alignment="CENTER" spacing="10">
+        <!-- Quiz Section -->
+        <VBox spacing="10">
+            <Label text="Quiz" />
+            <ListView fx:id="quizInput" editable="true" accessibleRole="LIST_VIEW" />
+            <Label text="Quiz Subtotal" />
+            <TextField fx:id="quizSubtotalField" editable="false" accessibleRole="TEXT_FIELD" />
+            <Region focusTraversable="true" />
+        </VBox>
 
-	<MenuBar>
-		<Menu text="Data">
-			<MenuItem text="Add Quiz" onAction="#addQuizGrade" />
-			<MenuItem text="Add Homework" onAction="#addHomeworkGrade" />
-			<MenuItem text= "Add Exam" onAction="#addExamGrade" />
-		</Menu>
-	</MenuBar>
+        <!-- Homeworks Section -->
+        <VBox spacing="10">
+            <Label text="Homeworks" />
+            <ListView fx:id="homeworkInput" accessibleRole="LIST_VIEW" />
+            <Label text="Homework Subtotal" />
+            <TextField fx:id="homeworkSubtotalField" editable="false" accessibleRole="TEXT_FIELD" />
+            <Region focusTraversable="true" />
+        </VBox>
 
-	<HBox spacing="10">
-		<!-- Quiz Section -->
-		<VBox spacing="10">
-			<Label text="Quiz" />
-			<ListView fx:id="quizInput" editable="true" />
-			<Label text="Quiz Subtotal" />
-			<TextField fx:id="quizSubtotalField" editable="false" />
-			<VBox fx:id="quizResultBox" />
-		</VBox>
+        <!-- Exams Section -->
+        <VBox spacing="10">
+            <Label text="Exams" />
+            <ListView fx:id="examInput" accessibleRole="LIST_VIEW" />
+            <Label text="Exam Subtotal" />
+            <TextField fx:id="examSubtotalField" editable="false" accessibleRole="TEXT_FIELD" />
+            <Region focusTraversable="true" />
+        </VBox>
+    </HBox>
 
-
-		<!-- Homeworks Section -->
-		<VBox spacing="10">
-			<Label text="Homeworks" />
-			<ListView fx:id="homeworkInput" />
-			<Label text="Homework Subtotal" />
-			<TextField fx:id="homeworkSubtotalField" editable="false" />
-			<VBox fx:id="homeworkResultBox" />
-		</VBox>
-
-		<!-- Exams Section -->
-		<VBox spacing="10">
-			<Label text="Exams" />
-			<ListView fx:id="examInput" />
-			<Label text="Exam Subtotal" />
-			<TextField fx:id="examSubtotalField" editable="false" />
-			<VBox fx:id="examResultBox" />
-		</VBox>
-	</HBox>
-
-	<HBox spacing="10" alignment="CENTER">
-		<Label text="Final Grade: " />
-		<TextField fx:id="finalGradeField" editable="false" />
-		<Button text="Recalculate" onAction="#recalculateButtonAction" />
-	</HBox>
-
+    <HBox spacing="10" alignment="CENTER">
+        <Label text="Final Grade: " />
+        <TextField fx:id="finalGradeField" editable="false" accessibleRole="TEXT_FIELD" />
+        <Button text="Recalculate" onAction="#recalculateButtonAction" accessibleRole="BUTTON" />
+    </HBox>
 </VBox>
-
-
