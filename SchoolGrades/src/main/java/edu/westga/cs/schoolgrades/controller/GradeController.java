@@ -33,7 +33,9 @@ public class GradeController {
     @FXML
     private TextField homeworkSubtotalField;
     
+    private GradeCalculationStrategy quizCalculationStrategy;
     private GradeCalculationStrategy homeworkCalculationStrategy;
+    
 
 
     @FXML
@@ -47,6 +49,8 @@ public class GradeController {
         this.homeworkInput.setCellFactory(param -> new GradeListCell());
         
         this.homeworkCalculationStrategy = new AverageOfGradesStrategy();
+        this.quizCalculationStrategy = new SumOfGradesStrategy();
+
     }
 
     @FXML
@@ -56,22 +60,20 @@ public class GradeController {
         dialog.setHeaderText(null);
         dialog.setContentText("Enter quiz grade:");
         Optional<String> result = dialog.showAndWait();
-
         result.ifPresent(input -> {
             try {
                 double gradeValue = Double.parseDouble(input);
                 Grade grade = new SimpleGrade(gradeValue);
                 this.quizGrades.add(grade);
-                this.updateSubtotal();
+                this.updateQuizSubtotal();
             } catch (NumberFormatException e) {
-                
             }
         });
     }
 
     @FXML
     private void recalculateButtonAction() {
-        this.updateSubtotal();
+    	
     }
     
     @FXML
@@ -96,19 +98,13 @@ public class GradeController {
         double subtotal = this.homeworkCalculationStrategy.calculate(this.homeworkGrades);
         this.homeworkSubtotalField.setText(String.valueOf(subtotal));
     }
-
+    
     @FXML
-    private void updateSubtotal() {
-        double subtotal = this.calculateTotal(this.quizGrades);
+    private void updateQuizSubtotal() {
+        double subtotal = this.quizCalculationStrategy.calculate(this.quizGrades);
         this.quizSubtotalField.setText(String.valueOf(subtotal));
     }
 
-    private double calculateTotal(List<Grade> grades) {
-        double sum = 0;
-        for (Grade grade : grades) {
-            sum += grade.getValue();
-        }
-        return sum;
-    }
+  
 
 }
