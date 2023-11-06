@@ -40,6 +40,9 @@ public class GradeController {
     @FXML 
     private TextField examSubtotalField;
 
+    @FXML
+	private TextField finalGradeField;
+
     
     private GradeCalculationStrategy quizCalculationStrategy;
     private GradeCalculationStrategy homeworkCalculationStrategy;
@@ -83,11 +86,6 @@ public class GradeController {
             } catch (NumberFormatException e) {
             }
         });
-    }
-
-    @FXML
-    private void recalculateButtonAction() {
-    	
     }
     
     @FXML
@@ -144,6 +142,15 @@ public class GradeController {
         this.examSubtotalField.setText(String.valueOf(subtotal));
     }
 
-  
+    @FXML
+    private void recalculateButtonAction() {
+        double quizSubtotal = Double.parseDouble(this.quizSubtotalField.getText());
+        double homeworkSubtotal = Double.parseDouble(this.homeworkSubtotalField.getText());
+        double examSubtotal = Double.parseDouble(this.examSubtotalField.getText());
+
+        double finalGrade = 0.2 * quizSubtotal + 0.3 * homeworkSubtotal + 0.5 * examSubtotal;
+        this.finalGradeField.setText(String.valueOf(finalGrade));
+    }
+
 
 }
