@@ -23,21 +23,23 @@
 
 
 	<MenuBar>
-        <Menu text="Data">
-            <MenuItem text="Add Quiz" onAction="#addQuizGrade"/>
-        </Menu>
-    </MenuBar>
+		<Menu text="Data">
+			<MenuItem text="Add Quiz" onAction="#addQuizGrade" />
+			<MenuItem text="Add Homework" onAction="#addHomeworkGrade" />
 
-    <HBox spacing="10">
-        <!-- Quiz Section -->
-        <VBox spacing="10">
-            <Label text="Quiz" />
-            <ListView fx:id="quizInput" editable="true"/>
-            <Label text="Quiz Subtotal" />
-            <TextField fx:id="quizSubtotalField" editable="false" />
-            <VBox fx:id="quizResultBox" />
-        </VBox>
-		
+		</Menu>
+	</MenuBar>
+
+	<HBox spacing="10">
+		<!-- Quiz Section -->
+		<VBox spacing="10">
+			<Label text="Quiz" />
+			<ListView fx:id="quizInput" editable="true" />
+			<Label text="Quiz Subtotal" />
+			<TextField fx:id="quizSubtotalField" editable="false" />
+			<VBox fx:id="quizResultBox" />
+		</VBox>
+
 
 		<!-- Homeworks Section -->
 		<VBox spacing="10">
