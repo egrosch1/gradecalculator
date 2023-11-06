@@ -21,12 +21,11 @@
 	fx:controller="edu.westga.cs.schoolgrades.controller.GradeController"
 	alignment="CENTER" spacing="10">
 
-
 	<MenuBar>
 		<Menu text="Data">
 			<MenuItem text="Add Quiz" onAction="#addQuizGrade" />
 			<MenuItem text="Add Homework" onAction="#addHomeworkGrade" />
-
+			<MenuItem text= "Add Exam" onAction="#addExamGrade" />
 		</Menu>
 	</MenuBar>
 

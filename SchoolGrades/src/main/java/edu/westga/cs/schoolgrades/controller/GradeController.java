@@ -28,14 +28,22 @@ public class GradeController {
     private ListView<Grade> homeworkInput;
     private ObservableList<Grade> homeworkGrades;
     
+    @FXML 
+    private ListView<Grade> examInput;
+    private ObservableList<Grade> examGrades;
     @FXML
     private TextField quizSubtotalField;
 
     @FXML
     private TextField homeworkSubtotalField;
     
+    @FXML 
+    private TextField examSubtotalField;
+
+    
     private GradeCalculationStrategy quizCalculationStrategy;
     private GradeCalculationStrategy homeworkCalculationStrategy;
+    private GradeCalculationStrategy examCalculationStrategy;
     
 
 
@@ -49,8 +57,13 @@ public class GradeController {
         this.homeworkInput.setItems(this.homeworkGrades);
         this.homeworkInput.setCellFactory(param -> new GradeListCell());
         
+        this.examGrades = FXCollections.observableArrayList();
+        this.examInput.setItems(this.examGrades);
+        this.examInput.setCellFactory(param -> new GradeListCell());
+        
         this.homeworkCalculationStrategy = new DropLowestStrategy(new AverageOfGradesStrategy());
         this.quizCalculationStrategy = new SumOfGradesStrategy();
+        this.examCalculationStrategy = new AverageOfGradesStrategy();
 
     }
 
@@ -94,6 +107,25 @@ public class GradeController {
             }
         });
     }
+    
+    @FXML
+    private void addExamGrade() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Add Exam Grade");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Enter exam grade:");
+        Optional<String> result = dialog.showAndWait();
+        result.ifPresent(input -> {
+            try {
+                double gradeValue = Double.parseDouble(input);
+                Grade grade = new SimpleGrade(gradeValue);
+                this.examGrades.add(grade);
+                this.updateExamSubtotal();
+            } catch (NumberFormatException e) {
+            }
+        });
+    }
+    
     @FXML
     private void updateHomeworkSubtotal() {
         double subtotal = this.homeworkCalculationStrategy.calculate(this.homeworkGrades);
@@ -104,6 +136,12 @@ public class GradeController {
     private void updateQuizSubtotal() {
         double subtotal = this.quizCalculationStrategy.calculate(this.quizGrades);
         this.quizSubtotalField.setText(String.valueOf(subtotal));
+    }
+
+    @FXML
+    private void updateExamSubtotal() {
+        double subtotal = this.examCalculationStrategy.calculate(this.examGrades);
+        this.examSubtotalField.setText(String.valueOf(subtotal));
     }
 
   
