@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import edu.westga.cs.schoolgrades.model.AverageOfGradesStrategy;
+import edu.westga.cs.schoolgrades.model.DropLowestStrategy;
 import edu.westga.cs.schoolgrades.model.Grade;
 import edu.westga.cs.schoolgrades.model.GradeCalculationStrategy;
 import edu.westga.cs.schoolgrades.model.GradeListCell;
@@ -48,7 +49,7 @@ public class GradeController {
         this.homeworkInput.setItems(this.homeworkGrades);
         this.homeworkInput.setCellFactory(param -> new GradeListCell());
         
-        this.homeworkCalculationStrategy = new AverageOfGradesStrategy();
+        this.homeworkCalculationStrategy = new DropLowestStrategy(new AverageOfGradesStrategy());
         this.quizCalculationStrategy = new SumOfGradesStrategy();
 
     }
