@@ -7,6 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +28,10 @@ public class TestSumOfGradesStrategyCalculate {
 		grade0 = mock(Grade.class);
 		grade1 = mock(Grade.class);
 		grade2 = mock(Grade.class);
+		
+		when(grade0.getValue()).thenReturn(10.0);
+		when(grade1.getValue()).thenReturn(20.0);
+		when(grade2.getValue()).thenReturn(30.0);
 		
 		grades = new ArrayList<Grade>();
 		
