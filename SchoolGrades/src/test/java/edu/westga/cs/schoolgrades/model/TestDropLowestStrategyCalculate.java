@@ -20,15 +20,12 @@ public class TestDropLowestStrategyCalculate {
 	@BeforeEach
 	public void setUp() {
 		this.mockStrategy = mock(GradeCalculationStrategy.class);
-
 		this.grade2 = mock(Grade.class);
 		this.grade0 = mock(Grade.class);
 		this.grade1 = mock(Grade.class);
-
 		when(this.grade2.getValue()).thenReturn(30.0);
 		when(this.grade0.getValue()).thenReturn(20.0);
 		when(this.grade1.getValue()).thenReturn(10.0);
-
 		this.dropLowestStrategy = new DropLowestStrategy(this.mockStrategy);
 	}
 
@@ -73,8 +70,8 @@ public class TestDropLowestStrategyCalculate {
 
 	@Test
 	public void dropsMiddleGradeIfLowest() {
-		List<Grade> gradesList = Arrays.asList(this.grade0, this.grade1, this.grade2);
-		this.dropLowestStrategy.calculate(gradesList);
+		List<Grade> grades = Arrays.asList(this.grade0, this.grade1, this.grade2);
+		this.dropLowestStrategy.calculate(grades);
 
 		List<Grade> expectedList = Arrays.asList(this.grade0, this.grade2);
 		verify(this.mockStrategy).calculate(expectedList);
@@ -82,10 +79,10 @@ public class TestDropLowestStrategyCalculate {
 
 	@Test
 	public void dropsOneLowestGradeWhenMultiplePresent() {
-		List<Grade> gradesList = Arrays.asList(this.grade0, this.grade1, this.grade2, this.grade1);
-		this.dropLowestStrategy.calculate(gradesList);
+		List<Grade> grades = Arrays.asList(this.grade0, this.grade1, this.grade2, this.grade1);
+		this.dropLowestStrategy.calculate(grades);
 
-		List<Grade> expectedList = Arrays.asList(this.grade0, this.grade2, this.grade1);
-		verify(this.mockStrategy).calculate(expectedList);
+		List<Grade> expectedGrades = Arrays.asList(this.grade0, this.grade2, this.grade1);
+		verify(this.mockStrategy).calculate(expectedGrades);
 	}
 }
