@@ -1,88 +1,91 @@
 package edu.westga.cs.schoolgrades.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
-
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
 
 public class TestDropLowestStrategyCalculate {
-    private DropLowestStrategy dropLowestStrategy;
-    private GradeCalculationStrategy childStrategyMock;
-    private static final double DELTA = 0.001;
-    private Grade grade0;
-    private Grade grade1;
-    private Grade grade2;
-    private List<Grade> grades;
 
-    @BeforeEach
-    public void setUp() throws Exception {
-        grade0 = mock(Grade.class);
-        grade1 = mock(Grade.class);
-        grade2 = mock(Grade.class);
+	private DropLowestStrategy dropLowestStrategy;
+	private GradeCalculationStrategy mockStrategy;
 
-        grades = new ArrayList<Grade>();
+	private Grade grade2;
+	private Grade grade1;
+	private Grade grade0;
 
-        childStrategyMock = mock(GradeCalculationStrategy.class);
-        dropLowestStrategy = new DropLowestStrategy(childStrategyMock);
-    }
+	@BeforeEach
+	public void setUp() {
+		this.mockStrategy = mock(GradeCalculationStrategy.class);
 
-//    @Test
-//    public void shouldNotAllowNullGradesList() {
-//        dropLowestStrategy.calculate(null);
-//        verifyNoInteractions(childStrategyMock);
-//    }
+		this.grade2 = mock(Grade.class);
+		this.grade0 = mock(Grade.class);
+		this.grade1 = mock(Grade.class);
 
-    @Test
-    public void shouldNotDropLowestIfGradesListIsEmpty() {
-        dropLowestStrategy.calculate(grades);
-        verifyNoInteractions(childStrategyMock);
-    }
+		when(this.grade2.getValue()).thenReturn(30.0);
+		when(this.grade0.getValue()).thenReturn(20.0);
+		when(this.grade1.getValue()).thenReturn(10.0);
 
-    @Test
-    public void shouldNotDropLowestIfGradesListHasOneElement() {
-        grades.add(grade0);
-        dropLowestStrategy.calculate(grades);
-        verify(childStrategyMock).calculate(grades);
-    }
+		this.dropLowestStrategy = new DropLowestStrategy(this.mockStrategy);
+	}
 
-    @Test
-    public void canDropWhenLowestIsFirst() {
-        grades.add(grade0);
-        grades.add(grade1);
-        grades.add(grade2);
-        dropLowestStrategy.calculate(grades);
-        verify(childStrategyMock).calculate(Arrays.asList(grade1, grade2));
-    }
+	@Test
+	public void shouldNotAllowNullGradesList() {
+		assertThrows(IllegalArgumentException.class, () -> {
+			dropLowestStrategy.calculate(null);
+		});
+	}
 
-    @Test
-    public void canDropWhenLowestIsLast() {
-        grades.add(grade1);
-        grades.add(grade2);
-        grades.add(grade0);
-        dropLowestStrategy.calculate(grades);
-        verify(childStrategyMock).calculate(Arrays.asList(grade1, grade2));
-    }
+	@Test
+	public void shouldNotDropLowestIfGradesListIsEmpty() {
+		List<Grade> emptyList = Arrays.asList();
+		this.dropLowestStrategy.calculate(emptyList);
+		verify(this.mockStrategy).calculate(emptyList);
+	}
 
-    @Test
-    public void canDropWhenLowestIsInMiddle() {
-        grades.add(grade1);
-        grades.add(grade0);
-        grades.add(grade2);
-        dropLowestStrategy.calculate(grades);
-        verify(childStrategyMock).calculate(Arrays.asList(grade1, grade2));
-    }
+	@Test
+	public void shouldNotDropLowestIfGradesListHasOneElement() {
+		List<Grade> singleGradeList = Arrays.asList(this.grade0);
+		this.dropLowestStrategy.calculate(singleGradeList);
+		verify(this.mockStrategy).calculate(singleGradeList);
+	}
 
-    @Test
-    public void dropsOnlyOneIfThereAreMultipleLowestGrades() {
-        grades.add(grade1);
-        grades.add(grade0);
-        grades.add(grade2);
-        grades.add(grade0);
-        dropLowestStrategy.calculate(grades);
-        verify(childStrategyMock).calculate(Arrays.asList(grade1, grade2, grade0));
-    }
+	@Test
+	public void dropsFirstGradeIfLowest() {
+		List<Grade> grades = Arrays.asList(this.grade1, this.grade0, this.grade2);
+		this.dropLowestStrategy.calculate(grades);
+
+		List<Grade> expectedGrades = Arrays.asList(this.grade0, this.grade2);
+		verify(this.mockStrategy).calculate(expectedGrades);
+	}
+
+	@Test
+	public void dropsLastGradeIfLowest() {
+		List<Grade> grades = Arrays.asList(this.grade0, this.grade2, this.grade1);
+		this.dropLowestStrategy.calculate(grades);
+
+		List<Grade> expectedGrades = Arrays.asList(this.grade0, this.grade2);
+		verify(this.mockStrategy).calculate(expectedGrades);
+	}
+
+	@Test
+	public void dropsMiddleGradeIfLowest() {
+		List<Grade> gradesList = Arrays.asList(this.grade0, this.grade1, this.grade2);
+		this.dropLowestStrategy.calculate(gradesList);
+
+		List<Grade> expectedList = Arrays.asList(this.grade0, this.grade2);
+		verify(this.mockStrategy).calculate(expectedList);
+	}
+
+	@Test
+	public void dropsOneLowestGradeWhenMultiplePresent() {
+		List<Grade> gradesList = Arrays.asList(this.grade0, this.grade1, this.grade2, this.grade1);
+		this.dropLowestStrategy.calculate(gradesList);
+
+		List<Grade> expectedList = Arrays.asList(this.grade0, this.grade2, this.grade1);
+		verify(this.mockStrategy).calculate(expectedList);
+	}
 }
